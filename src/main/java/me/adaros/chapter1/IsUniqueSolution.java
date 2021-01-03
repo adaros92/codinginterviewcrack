@@ -16,6 +16,7 @@ public class IsUniqueSolution {
         HashSet<Character> charactersSeen = new HashSet<>();
         for (int i = 0; i < s.length(); i++){
             char character = s.charAt(i);
+            // If a character is in the set then it has been seen before so string is not unique
             if (charactersSeen.contains(character))
                 return false;
             charactersSeen.add(character);
@@ -23,12 +24,17 @@ public class IsUniqueSolution {
         return true;
     }
 
+    /**
+     * Corresponding isUnique solution from Cracking the Coding Interview
+     * @param s the string to check
+     * @return true if the string consists of only unique characters; false otherwise
+     */
     public boolean isUniqueBookSolution(String s){
         // Keep a fixed array of all possible unique ASCII values in the 128 ASCII character set
         // If a character is found, mark that index as True
         if (s.length() > 128) return false;
-        // Focus here is on O(1) space complexity
-        // I don't like that it relies on a constant number of characters (not extensible to unicode)
+        // Focus here is on O(1) space complexity while maintaining O(n) time complexity
+        // I don't like that it relies on a constant number of characters (not extensible to any char type)
         boolean[] charSet = new boolean[128];
         for (int i = 0; i < s.length(); i++){
             int val = s.charAt(i);
