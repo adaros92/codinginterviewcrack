@@ -22,4 +22,21 @@ public class IsUniqueSolution {
         }
         return true;
     }
+
+    public boolean isUniqueBookSolution(String s){
+        // Keep a fixed array of all possible unique ASCII values in the 128 ASCII character set
+        // If a character is found, mark that index as True
+        if (s.length() > 128) return false;
+        // Focus here is on O(1) space complexity
+        // I don't like that it relies on a constant number of characters (not extensible to unicode)
+        boolean[] charSet = new boolean[128];
+        for (int i = 0; i < s.length(); i++){
+            int val = s.charAt(i);
+            if (charSet[val]){
+                return false;
+            }
+            charSet[val] = true;
+        }
+        return true;
+    }
 }
